@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -22,15 +24,24 @@ namespace PatronageWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            this.DataContext = new Place() { Name = "Technopark", Address = "ul. Niemierzyńska 17a", Latitude = 0.0d, Longitude = 0.0d, HasWifi = true };
+            this.DataContext = new Place() { Name = "WI ZUT", Address = "ul. Żołnierska 49", Latitude = 0.0d, Longitude = 0.0d, HasWifi = true };
         }
 
+        private async void GetLocation_Click(object sender, RoutedEventArgs e)
+        {
+            Geolocator geo = new Geolocator();
+            geo.DesiredAccuracyInMeters = 50;
+            Geoposition pos = await geo.GetGeopositionAsync();
+            Lat.Text = pos.Coordinate.Point.Position.Latitude.ToString();
+            Lon.Text = pos.Coordinate.Point.Position.Longitude.ToString();
+        }
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>

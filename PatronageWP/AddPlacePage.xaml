@@ -11,15 +11,16 @@
     <Grid>
         <StackPanel Margin="10">
             <TextBlock Text="Name:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Text="{Binding Place.Name, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}"/>
             <TextBlock Text="Address:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Text="{Binding Place.Address, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Address, Mode=TwoWay}"/>
             <TextBlock Text="Latitude:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Text="{Binding Place.Latitude, Mode=TwoWay}"/>
+            <TextBox Name="Lat" Text="{Binding Latitude, Mode=TwoWay}"/>
             <TextBlock Text="Longitude:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Text="{Binding Place.Longitude, Mode=TwoWay}"/>
+            <TextBox Name="Lon" Text="{Binding Longitude, Mode=TwoWay}"/>
+            <Button Name="GetLocation" Click="GetLocation_Click" Content="get location"/>
             <TextBlock Text="Has Wifi:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <CheckBox IsChecked="{Binding Place.Longitude, Mode=TwoWay}"/>
+            <CheckBox IsChecked="{Binding HasWifi, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 </Page>
