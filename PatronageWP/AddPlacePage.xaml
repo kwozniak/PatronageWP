@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="PatronageWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PatronageWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Name:" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBox Text="{Binding Place.Name, Mode=TwoWay}"/>
+            <TextBlock Text="Address:" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBox Text="{Binding Place.Address, Mode=TwoWay}"/>
+            <TextBlock Text="Latitude:" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBox Text="{Binding Place.Latitude, Mode=TwoWay}"/>
+            <TextBlock Text="Longitude:" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBox Text="{Binding Place.Longitude, Mode=TwoWay}"/>
+            <TextBlock Text="Has Wifi:" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <CheckBox IsChecked="{Binding Place.Longitude, Mode=TwoWay}"/>
+        </StackPanel>
+    </Grid>
+</Page>
