@@ -7,16 +7,9 @@ using System.Threading.Tasks;
 
 namespace PatronageWP
 {
-    class Place : INotifyPropertyChanged
+    class Place : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string Id { get; set; }
 
         private string name;
         public string Name

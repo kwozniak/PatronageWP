@@ -30,8 +30,7 @@ namespace PatronageWP
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
-            this.DataContext = new Place() { Name = "WI ZUT", Address = "ul. Żołnierska 49", Latitude = 0.0d, Longitude = 0.0d, HasWifi = true };
+            this.DataContext = new AddPlace() {Place = new Place() {Name = "WI ZUT", Address = "ul. Żołnierska 49", Latitude = 0.0d, Longitude = 0.0d, HasWifi = true }};
         }
 
         private async void GetLocation_Click(object sender, RoutedEventArgs e)
