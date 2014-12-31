@@ -85,5 +85,6 @@ namespace PatronageWP
         {
             return Name + ", " + Address;
         }
+
     }
 }

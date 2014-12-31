@@ -80,7 +80,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Common\ObservableObject.cs" />
-    <Compile Include="ViewModels\AddPlace.cs" />
+    <Compile Include="ViewModels\AddPlaceViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

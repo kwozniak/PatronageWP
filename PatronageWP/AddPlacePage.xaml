@@ -10,22 +10,22 @@
 
     <Grid>
         <StackPanel Margin="10">
-            <TextBlock Name="Name" Text="Name:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Text="{Binding Place.Name, Mode=TwoWay}"/>
+            <TextBlock Text="Name:" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBox Text="{Binding Place.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Address:" Style="{ThemeResource BaseTextBlockStyle}"/>
             <TextBox Text="{Binding Place.Address, Mode=TwoWay}"/>
             <TextBlock Text="Latitude:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Name="Lat" Text="{Binding Place.Latitude, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Place.Latitude, Mode=TwoWay}"/>
             <TextBlock Text="Longitude:" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Name="Lon" Text="{Binding Place.Longitude, Mode=TwoWay}"/>
-            <Button Name="GetLocation" Click="GetLocation_Click" Content="get location"/>
+            <TextBox Text="{Binding Place.Longitude, Mode=TwoWay}"/>
+            <Button Command="{Binding GetLocation}" Content="get location"/>
             <TextBlock Text="Has Wifi:" Style="{ThemeResource BaseTextBlockStyle}"/>
             <CheckBox IsChecked="{Binding Place.HasWifi, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Name="Add" Command="{Binding AddCommand}" Icon="Add" />
+            <AppBarButton Command="{Binding AddCommand}" Icon="Add" />
             <AppBarButton Command="{Binding ClearCommand}" Icon="Clear" />
         </CommandBar>
     </Page.BottomAppBar>
