@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="PatronageWP.ListPlacesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PatronageWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Margin="10">
+        <ListView ItemsSource="{Binding Places}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,0,0,5">
+                        <TextBlock Text="{Binding Name}" Style="{ThemeResource BaseTextBlockStyle}" />
+                        <TextBlock Text="{Binding Address}"/>
+                        <TextBlock>
+                            <Run Text="{Binding Latitude}"/>
+                            <Run Text=", "/>
+                            <Run Text="{Binding Longitude}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" Command="{Binding AddCommand}" />
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

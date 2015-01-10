@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -12,20 +14,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Threading.Tasks;
-using PatronageWP.Entity;
 using PatronageWP.ViewModels;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
+// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace PatronageWP
 {
-    public sealed partial class AddPlacePage : Page
+    public sealed partial class ListPlacesPage : Page
     {
-        public AddPlacePage()
+        public ListPlacesPage()
         {
             this.InitializeComponent();
-            this.DataContext = new AddPlaceViewModel();
+            this.DataContext = new ListPlacesViewModel();
         }
+
     }
 }

@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using Windows.Devices.Geolocation;
+using PatronageWP.Common;
+using PatronageWP.Entity;
+using PatronageWP.Services;
 
-namespace PatronageWP
+namespace PatronageWP.ViewModels
 {
     class AddPlaceViewModel : ObservableObject
     {
         private PlaceService PlaceService = new PlaceService();
+        private NavigationService NavigationService = new NavigationService();
+        private GeolocationService GeolocationService = new GeolocationService();
 
         private Place place = new Place();
         public Place Place
@@ -34,22 +38,22 @@ namespace PatronageWP
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommand(() => Add(), Validate);
+                    addCommand = new RelayCommand(() => Add());
                 }
                 return addCommand;
             }
         }
 
-        private RelayCommand clearCommand = null;
-        public RelayCommand ClearCommand
+        private RelayCommand cancelCommand = null;
+        public RelayCommand CancelCommand
         {
             get
             {
-                if (clearCommand == null)
+                if (cancelCommand == null)
                 {
-                    clearCommand = new RelayCommand(() => Confirm());
+                    cancelCommand = new RelayCommand(() => Confirm());
                 }
-                return clearCommand;
+                return cancelCommand;
             }
         }
 
@@ -69,13 +73,13 @@ namespace PatronageWP
         private async void Add()
         {
             await PlaceService.AddPlace(Place);
-            Clear();
-            await new MessageDialog("Place added.\nList size: " + PlaceService.GetPlaces().Count, "Success").ShowAsync();
+            NavigationService.Navigate(typeof(ListPlacesPage));
         }
 
-        private void Clear()
+        private void Cancel()
         {
             Place = new Place();
+            NavigationService.Navigate(typeof(ListPlacesPage));
         }
 
         private bool Validate()
@@ -86,25 +90,23 @@ namespace PatronageWP
         private async void Confirm()
         {
             var messageDialog = new MessageDialog("Are you sure?", "Confirmation");
-            messageDialog.Commands.Add(new UICommand("Yes", new UICommandInvokedHandler(CommandInvokedHandler)));
+            messageDialog.Commands.Add(new UICommand("Yes", new UICommandInvokedHandler(CancelCommandInvokedHandler)));
             messageDialog.Commands.Add(new UICommand("No"));
             messageDialog.DefaultCommandIndex = 0;
             messageDialog.CancelCommandIndex = 1;
             await messageDialog.ShowAsync();
         }
 
-        private void CommandInvokedHandler(IUICommand command)
+        private void CancelCommandInvokedHandler(IUICommand command)
         {
-            Clear();
+            Cancel();
         }
 
-        public async void GetLocation_Click()
+        public void GetLocation_Click()
         {
-            Geolocator geo = new Geolocator();
-            geo.DesiredAccuracyInMeters = 50;
-            Geoposition pos = await geo.GetGeopositionAsync();
-            Place.Latitude = pos.Coordinate.Point.Position.Latitude;
-            Place.Longitude = pos.Coordinate.Point.Position.Longitude;
+            GeolocationService.GetLocation();
+            Place.Latitude = GeolocationService.GetLatitude();
+            Place.Longitude = GeolocationService.GetLongitude();
         }
     }
 }

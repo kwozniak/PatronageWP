@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
+using PatronageWP.Entity;
 
-namespace PatronageWP
+namespace PatronageWP.Services
 {
     class PlaceService
     {
-        private static List<Place> places = new List<Place>();
-
         public static MobileServiceClient MobileService = new MobileServiceClient(
             "https://patronatwp.azure-mobile.net/",
             "uUmwvehkLigKjTZAaXPgMeDQpMknrf85"
@@ -18,14 +17,12 @@ namespace PatronageWP
 
         public async Task AddPlace(Place Place)
         {
-            places.Add(Place);
             await MobileService.GetTable<Place>().InsertAsync(Place);
         }
 
-        public List<Place> GetPlaces()
+        public async Task<List<Place>> GetPlaces()
         {
-            return places;
-            //return await MobileService.GetTable<Place>().ToCollectionAsync().ContinueWith(t => t.Result.ToList());
+            return await MobileService.GetTable<Place>().ToCollectionAsync().ContinueWith(t => t.Result.ToList());
         }
     }
 }
